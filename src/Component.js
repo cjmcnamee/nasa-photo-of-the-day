@@ -15,6 +15,12 @@ export const CoolerH1 = styled.h1`
   color: red;
 `;
 
+export const CoolerIframe = styled.iframe`
+  width: 90%;
+  &:hover {
+    box-shadow: 3px 3px 5px 5px blue;
+  }
+`;
 export const CoolerImg = styled.img`
   width: 90%;
   border-radius: 8px;
@@ -43,9 +49,9 @@ const Component = (props) => {
   } else {
     return (
       <CoolerDiv className="appContainer">
-        <h1 className="title">NASA: Photo of the Day</h1>
+        <CoolerH1 className="title">NASA: Photo of the Day</CoolerH1>
         <div className="imgContainer">
-          <iframe className="imgVideo" src={props.url}></iframe>
+          <CoolerIframe className="imgVideo" src={props.url}></CoolerIframe>
         </div>
 
         <EvenCoolerDiv className="textContainer">
