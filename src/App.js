@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Component from "./Component";
-import axios from "axios"
+import Header from "./Header.js";
+import Component from "./Component.js";
+import axios from "axios";
+import styled from 'styled-components'
 
 function App() {
-
-  const [photos, setPhotos] = useState([]);
+  const [mediaType, setMediaType] = useState('');
+  const [photos, setPhotos] = useState('');
 
   useEffect( () => {
-    axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+    axios.get('https://api.nasa.gov/planetary/apod?api_key=83IKOh3AunEUBpm9dSpHZLkMsVIUJ6DS41MfyHaL')
       .then( (res) => {
         setPhotos(res.data)
+        setMediaType(res.data.media_type)
       })
       .catch( err => console.log("Oopsies!: ", err))
   }, [] )
@@ -18,7 +21,8 @@ function App() {
 
   return (
     <div className="App">
-      <Component url={photos.url} title={photos.title} explanation={photos.explanation} />
+      <Header date={photos.date} />
+      <Component url={photos.url} title={photos.title} explanation={photos.explanation} media_type={mediaType}/>
     </div>
   );
 }
